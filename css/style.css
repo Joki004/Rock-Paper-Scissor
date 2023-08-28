@@ -136,37 +136,39 @@ section img {
   gap: 15px;
   width: 80%;
   margin-top: 10%;
-
   padding: 5px;
 }
 
 .player-selection button {
-  width: 20em;
+  width: 15em;
+  height: 10em;
   border-radius: 8px;
   background-color: #ffedcb;
 }
 .player-selection button img {
-  width: 12em;
-  height: 12em;
+  width: 10em;
+  height: 10em;
 }
 .animation {
+  position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 2%;
+  margin-top: 3%;
   border: solid;
   width: 90%;
-  height: 35em;
+  height: 30em;
+  border: solid red;
 }
 .player-side {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  border: solid;
+  border: solid blue;
   width: 90%;
-  height: 35em;
+  height: 100%;
 }
 
 .player-side img {
@@ -180,15 +182,19 @@ section img {
   border-radius: 8px;
   padding: 8px;
   margin: 15px;
+  width: 250px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 .cpu-side {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  border: solid;
+  border: solid yellow;
   width: 90%;
-  height: 35em;
+  height: 100%;
 }
 
 .cpu-side img {
@@ -202,6 +208,10 @@ section img {
   border-radius: 8px;
   padding: 8px;
   margin: 15px;
+  width: 250px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 #cpu-rock,
@@ -231,7 +241,7 @@ section img {
   color: white;
 }
 .score {
-  width: 30%;
+  width: 40%;
   height: 40px;
   color: white;
   border: solid;
@@ -245,6 +255,7 @@ section img {
   font-size: 30px;
   font-weight: bold;
   font-style: italic;
+  word-wrap: none;
 }
 .continue_game {
   width: 10%;
@@ -264,4 +275,25 @@ section img {
   border-radius: 8px;
   background-color: #fd8b7b;
   font-size: 20px;
+}
+
+@media screen and (max-width: 1100px) {
+  .player-selection {
+    width: 90%;
+  }
+
+  .player-selection button {
+    width: 25%;
+  }
+  .player-selection button img {
+    width: 8em;
+    height: 8em;
+  }
+  .animation {
+    width: 90%;
+    height: 25em;
+  }
+  .score {
+    font-size: 100%;
+  }
 }
