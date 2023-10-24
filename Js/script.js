@@ -56,11 +56,17 @@ let choosing = document.getElementsByClassName("choosing");
 let continue_game = document.getElementsByClassName("continue")[0];
 let scoreCpuElement = document.querySelector(".score-cpu");
 let scorePlayerElement = document.querySelector(".score-player");
+
 async function game() {
   let playerScore = 0;
   let computerScore = 0;
+  let round = 0;
 
   while (playerScore < 5 && computerScore < 5) {
+   
+    round++;
+    console.log("Round: " + round);
+    document.querySelector(".roundCounter").textContent = "Round : " + round;
     const playerSelection = await getUserChoice();
     const computerSelection = getComputerChoice();
     animation(playerSelection, computerSelection);
@@ -68,7 +74,9 @@ async function game() {
     console.log(result);
 
     if (result.localeCompare("It's a Draw") === 0) {
+      document.querySelector(".gameStatus").textContent = "It's a Draw";
     } else {
+      document.querySelector(".gameStatus").textContent = result;
       let won = result.match("You Won");
       console.log(won);
       if (won != null) {
@@ -79,20 +87,49 @@ async function game() {
     console.log("computerScore: " + computerScore);
     scoreCpuElement.textContent = "Score: " + computerScore;
     scorePlayerElement.textContent = "Score: " + playerScore;
-    const buttonClicked = await waitForButtonClick();
+    const buttonClicked = await waitForButtonClick(playerScore, computerScore);
     stopAnimations();
+
+    if (playerScore === 5 || computerScore === 5) {
+      console.log("Game Over");
+      if (playerScore > computerScore) {
+        document.querySelector(".gameStatus").textContent = "You won the game";
+        console.log("You won the game");
+      } else if (playerScore < computerScore) {
+        document.querySelector(".gameStatus").textContent = "You lost the game";
+        console.log("You lost the game");
+      } else {
+        document.querySelector(".gameStatus").textContent = "It's a draw";
+        console.log("It's a draw");
+      }
+    
+      playerScore = 0;
+      computerScore = 0;
+      round = 0;
+      resetGame();
+    }
   }
 
-  if (playerScore > computerScore) {
-    console.log("You won the game");
-  } else if (playerScore < computerScore) console.log("You lost the game");
-  else console.log("It's a draw");
+
 }
 
-game();
-function waitForButtonClick() {
+function resetGame() {
+  document.querySelector(".roundCounter").textContent = "Round : 0";
+  document.querySelector(".gameStatus").textContent = "Game Status";
+  scoreCpuElement.textContent = "Score: 0";
+}
+
+function waitForButtonClick(playerScore, computerScore) {
   return new Promise((resolve) => {
     let continue_game = document.getElementsByClassName("continue")[0];
+    if(playerScore === 5 || computerScore === 5){
+      document.querySelector(".continue").textContent = "Play Again";
+    }
+    else
+    {
+      document.querySelector(".continue").textContent = "Click to Continue";
+    }
+    
 
     continue_game.addEventListener("click", function () {
       continue_game.removeEventListener("click", arguments.callee);
@@ -144,3 +181,5 @@ function stopAnimations() {
   cpu_scissors_animation.style.display = "none";
   continue_game.style.display = "None";
 }
+
+game();

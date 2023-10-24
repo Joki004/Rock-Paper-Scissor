@@ -7,6 +7,8 @@ body {
   background: #0a2a43;
   min-height: 1500px;
   height: 100%;
+  overflow-x: hidden;
+ 
 }
 section {
   position: relative;
@@ -98,21 +100,39 @@ section img {
 
 .parallax {
   perspective: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  margin: 0;
 }
 
 .parallax-layer {
   position: absolute;
-  top: 0;
+  top: 350px;
   left: 0;
   right: 0;
   bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
 }
+
+
 .parallax-layer img {
   width: 100%;
-  object-fit: fill;
+  height: 30em;
+  object-fit:cover;
+
 }
 #background {
-  transform: translateZ(-2px) scale(1.2);
+  /*transform: translateZ(-2px) scale(1.2);*/
+  transform: translateX(0) translateY(0) scale(1.2);
+  transition: transform 0.1s ease; /* Add transition for smooth movement */
 }
 
 #foreground {
@@ -135,7 +155,6 @@ section img {
   flex-wrap: wrap;
   gap: 15px;
   width: 80%;
-  margin-top: 10%;
   padding: 5px;
 }
 
@@ -144,10 +163,12 @@ section img {
   height: 10em;
   border-radius: 8px;
   background-color: #ffedcb;
+  object-fit: fill;
 }
 .player-selection button img {
   width: 10em;
   height: 10em;
+  object-fit: fill;
 }
 .animation {
   position: relative;
@@ -155,34 +176,31 @@ section img {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 3%;
-  border: solid;
   width: 90%;
-  height: 30em;
-  border: solid red;
+  height: auto;
+  padding: 8px;
 }
 .player-side {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  border: solid blue;
   width: 90%;
   height: 100%;
 }
 
 .player-side img {
-  width: 50%;
+  width: 40%;
   height: auto;
 }
 .player-side h3 {
   color: #ffedcb;
-  font-size: 50px;
+  font-size: 30px;
   border: solid;
   border-radius: 8px;
   padding: 8px;
   margin: 15px;
-  width: 250px;
+  width: 200px;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -192,23 +210,22 @@ section img {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  border: solid yellow;
   width: 90%;
   height: 100%;
 }
 
 .cpu-side img {
-  width: 50%;
+  width: 40%;
   height: auto;
 }
 .cpu-side h3 {
   color: #ffedcb;
-  font-size: 50px;
+  font-size: 30px;
   border: solid;
   border-radius: 8px;
   padding: 8px;
   margin: 15px;
-  width: 250px;
+  width: 200px;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -217,21 +234,21 @@ section img {
 #cpu-rock,
 #player-rock {
   display: none;
-  width: 40%;
+  width: 30%;
   height: auto;
 }
 
 #cpu-paper,
 #player-paper {
   display: none;
-  width: 35%;
+  width: 25%;
   height: auto;
 }
 
 #player-scissors,
 #cpu-scissors {
   display: none;
-  width: 35%;
+  width: 25%;
   height: auto;
 }
 
@@ -241,24 +258,24 @@ section img {
   color: white;
 }
 .score {
-  width: 40%;
-  height: 40px;
+  width: 20%;
+  height: auto;
   color: white;
   border: solid;
-  margin-top: 25px;
+  margin-top: 5px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 10px;
+  padding: 2%;
   border-radius: 8px;
-  font-size: 30px;
+  font-size: 20px;
   font-weight: bold;
   font-style: italic;
   word-wrap: none;
 }
 .continue_game {
-  width: 10%;
+  width: 20%;
   height: 50px;
   display: flex;
   align-items: center;
@@ -273,9 +290,61 @@ section img {
   align-items: center;
   justify-content: center;
   border-radius: 8px;
-  background-color: #fd8b7b;
+  background-color: #7e2316;
   font-size: 20px;
 }
+
+.gameInfo {
+  width: 80%;
+  height: 100px;
+  border: solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+  background-color: #4e8397;
+  font-size: 22px;
+
+  margin: 10px;
+}
+
+.textInfo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
+}
+.roundCounter {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 25px;
+  color: white;
+  font-weight: bold;
+}
+
+.gameStatus {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 22px;
+  color: bisque;
+  font-style: italic;
+}
+
+
 
 @media screen and (max-width: 1100px) {
   .player-selection {
@@ -291,7 +360,7 @@ section img {
   }
   .animation {
     width: 90%;
-    height: 25em;
+    height: auto;
   }
   .score {
     font-size: 100%;

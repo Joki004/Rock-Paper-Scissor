@@ -25,33 +25,22 @@
         </div>
 
         <h2 id="text">Rock-Paper-Scissor</h2>
-        <button id="start">Start the game</button>
+        <button onclick="scrollToSection('down')" id="start">Start the game</button>
       </div>
     </section>
 
-   
-
     <div class="parallax">
-      
       <div class="parallax-layer" id="background">
-        <div id="game"></div>
+        <div id="game" id="down"></div>
         <img src="./images/background.svg" alt="Background" />
       </div>
       <div class="parallax-layer" id="foreground">
         <div class="game-container">
-          <div class="player-selection">
-            <button id="rock-btn">
-              <img src="./images/rock_removebg.png" alt="" />
-            </button>
-            <button id="paper-btn">
-              <img src="./images/paper_removebg.png" alt="" />
-            </button>
-            <button id="scissors-btn">
-              <img src="./images/scissors_removebg.png" alt="" />
-            </button>
-          </div>
+         
           <div class="gameInfo">
-            <p class="gameInfo"></p>
+            <p class="textInfo">First to 5 points wins the game</p>
+            <p class="roundCounter"></p>
+            <p class="gameStatus"></p>
           </div>
           <div class="animation">
             <div class="player-side">
@@ -84,9 +73,22 @@
               </div>
             </div>
           </div>
+          <div class="player-selection">
+            <button id="rock-btn">
+              <img src="./images/rock_removebg.png" alt="" />
+            </button>
+            <button id="paper-btn">
+              <img src="./images/paper_removebg.png" alt="" />
+            </button>
+            <button id="scissors-btn">
+              <img src="./images/scissors_removebg.png" alt="" />
+            </button>
+          </div>
           <div class="continue_game">
             <button class="continue">Continue</button>
           </div>
+
+          
         </div>
       </div>
     </div>

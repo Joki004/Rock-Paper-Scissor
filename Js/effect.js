@@ -46,8 +46,26 @@ parallaxContainer.addEventListener("mousemove", function (e) {
 
     // Adjust the transform property based on mouse position
     const xParallax = (mouseX - parallaxContainer.clientWidth / 2) / 20;
-    const yParallax = (mouseY - parallaxContainer.clientHeight / 2) / 30;
+    const yParallax = (mouseY - parallaxContainer.clientHeight / 2) / 20;
 
     backgroundLayer.style.transform = `translateX(${xParallax}px) translateY(${yParallax}px) scale(2)`;
     ///foregroundLayer.style.transform = `translateX(${-xParallax}px) translateY(${-yParallax}px)`;
 });
+
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const offset = -1; // Adjust this value to set the desired offset
+      const offsetPosition = section.offsetTop - offset;
+  
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  }
+
+
+
+
+  
