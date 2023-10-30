@@ -344,6 +344,72 @@ section img {
   font-style: italic;
 }
 
+#playPauseButton, #muteUnmuteButton {
+  margin: 10px;
+  margin-right: 10px;
+}
+
+.playIcon {
+  display: flex;
+  width: 50px;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: solid;
+  color:#0a2a43;
+
+}
+.pauseIcon {
+  display: none;
+  width: 50px;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: solid;
+  color:#0a2a43;
+
+}
+
+.muteIcon {
+  display: none;
+  width: 50px;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: solid;
+  color:#0a2a43;
+
+}
+.unmuteIcon {
+  display: flex;
+  width: 50px;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  border: solid;
+  color:#0a2a43;
+}
+
+
+.mediacontrol{
+  display: flex;
+  flex-direction: row;
+  width: 20rem;
+  height: auto;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: antiquewhite;
+  border-radius: 8px;
+  font-size: large;
+  margin-left: 10px;
+  padding: 2px;
+  color:#0a2a43:
+
+}
+
 
 
 @media screen and (max-width: 1100px) {

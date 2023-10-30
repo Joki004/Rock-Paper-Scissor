@@ -13,8 +13,14 @@ function playRound(playerSelection, computerSelection) {
   if (playerSelection != null) playerSelection = playerSelection.toLowerCase();
   computerSelection = computerSelection.toLowerCase();
 
-  if (playerSelection === computerSelection) return "It's a Draw";
-  else if (playerSelection === "rock") {
+  let result = "";
+  let speech = new SpeechSynthesisUtterance(result);
+  speech.lang = "en-US";
+  speech.volume = 5;
+  speech.rate = 1;
+  if (playerSelection === computerSelection) {
+    return "It's a Draw";
+  } else if (playerSelection === "rock") {
     if (computerSelection === "paper") {
       return `You Lose! ${computerSelection} beats ${playerSelection}`;
     }
@@ -24,7 +30,7 @@ function playRound(playerSelection, computerSelection) {
     }
   } else if (playerSelection === "paper") {
     if (computerSelection === "rock") {
-      return `You won! ${playerSelection} beats ${computerSelection}`;
+      return `You Won! ${playerSelection} beats ${computerSelection}`;
     }
 
     if (computerSelection === "scissors") {
@@ -36,9 +42,53 @@ function playRound(playerSelection, computerSelection) {
     }
 
     if (computerSelection === "paper") {
-      return `You won! ${playerSelection} beats ${computerSelection}`;
+      return `You Won! ${playerSelection} beats ${computerSelection}`;
     }
   }
+}
+
+function playRoundResult(playerSelection, computerSelection) {
+  if (playerSelection != null) playerSelection = playerSelection.toLowerCase();
+  computerSelection = computerSelection.toLowerCase();
+
+  if (playerSelection === computerSelection) return 3;
+  else if (playerSelection === "rock") {
+    if (computerSelection === "paper") {
+      return 2;
+    }
+
+    if (computerSelection === "scissors") {
+      return 1;
+    }
+  } else if (playerSelection === "paper") {
+    if (computerSelection === "rock") {
+      return 1;
+    }
+
+    if (computerSelection === "scissors") {
+      return 2;
+    }
+  } else if (playerSelection === "scissors") {
+    if (computerSelection === "rock") {
+      return 2;
+    }
+
+    if (computerSelection === "paper") {
+      return 1;
+    }
+  }
+}
+
+function readingText(text) {
+  if (text.length > 0) {
+    let speech = new SpeechSynthesisUtterance(text);
+    speech.lang = "en-US";
+    speech.volume = 5;
+    speech.rate = 1;
+    window.speechSynthesis.speak(speech);
+    return true;
+  }
+  return false;
 }
 
 const rock_btn = document.getElementById("rock-btn");
@@ -63,7 +113,6 @@ async function game() {
   let round = 0;
 
   while (playerScore < 5 && computerScore < 5) {
-   
     round++;
     console.log("Round: " + round);
     document.querySelector(".roundCounter").textContent = "Round : " + round;
@@ -71,46 +120,42 @@ async function game() {
     const computerSelection = getComputerChoice();
     animation(playerSelection, computerSelection);
     let result = playRound(playerSelection, computerSelection);
+    let isWinnig = playRoundResult(playerSelection, computerSelection);
     console.log(result);
 
-    if (result.localeCompare("It's a Draw") === 0) {
-      document.querySelector(".gameStatus").textContent = "It's a Draw";
+    if (isWinnig === 3) {
+      document.querySelector(".gameStatus").textContent = result;
     } else {
       document.querySelector(".gameStatus").textContent = result;
-      let won = result.match("You Won");
-      console.log(won);
-      if (won != null) {
+      if (isWinnig === 1) {
         playerScore++;
-      } else computerScore++;
+      } else if (isWinnig === 2) computerScore++;
     }
-    console.log("playerScore: " + playerScore);
-    console.log("computerScore: " + computerScore);
+
     scoreCpuElement.textContent = "Score: " + computerScore;
     scorePlayerElement.textContent = "Score: " + playerScore;
+    readingText(result);
     const buttonClicked = await waitForButtonClick(playerScore, computerScore);
     stopAnimations();
 
     if (playerScore === 5 || computerScore === 5) {
-      console.log("Game Over");
       if (playerScore > computerScore) {
         document.querySelector(".gameStatus").textContent = "You won the game";
+        readingText("You won the game");
         console.log("You won the game");
       } else if (playerScore < computerScore) {
         document.querySelector(".gameStatus").textContent = "You lost the game";
+        readingText("You lost the game");
         console.log("You lost the game");
-      } else {
-        document.querySelector(".gameStatus").textContent = "It's a draw";
-        console.log("It's a draw");
       }
-    
+      console.log("Game Over----");
+      readingText("Game is finished");
       playerScore = 0;
       computerScore = 0;
       round = 0;
       resetGame();
     }
   }
-
-
 }
 
 function resetGame() {
@@ -122,14 +167,12 @@ function resetGame() {
 function waitForButtonClick(playerScore, computerScore) {
   return new Promise((resolve) => {
     let continue_game = document.getElementsByClassName("continue")[0];
-    if(playerScore === 5 || computerScore === 5){
+    if (playerScore === 5 || computerScore === 5) {
       document.querySelector(".continue").textContent = "Play Again";
-    }
-    else
-    {
+      document.querySelector(".continue").style.backgroundColor = "red";
+    } else {
       document.querySelector(".continue").textContent = "Click to Continue";
     }
-    
 
     continue_game.addEventListener("click", function () {
       continue_game.removeEventListener("click", arguments.callee);
@@ -183,3 +226,36 @@ function stopAnimations() {
 }
 
 game();
+
+const audio = document.getElementById("myAudio");
+const playPauseButton = document.getElementById("playPauseButton");
+const muteUnmuteButton = document.getElementById("muteUnmuteButton");
+const volumeControl = document.getElementById("volumeControl");
+
+playPauseButton.addEventListener("click", function () {
+  if (audio.paused) {
+    audio.play();
+    document.getElementsByClassName("pauseIcon")[0].style.display = "flex";
+    document.getElementsByClassName("playIcon")[0].style.display = "none";
+  } else {
+    audio.pause();
+    document.getElementsByClassName("playIcon")[0].style.display = "flex";
+    document.getElementsByClassName("pauseIcon")[0].style.display = "none";
+  }
+});
+
+muteUnmuteButton.addEventListener("click", function () {
+  if (audio.muted) {
+    audio.muted = false;
+    document.getElementsByClassName("muteIcon")[0].style.display = "none";
+    document.getElementsByClassName("unmuteIcon")[0].style.display = "flex";
+  } else {
+    audio.muted = true;
+    document.getElementsByClassName("unmuteIcon")[0].style.display = "none";
+    document.getElementsByClassName("muteIcon")[0].style.display = "flex";
+  }
+});
+
+volumeControl.addEventListener("input", () => {
+  audio.volume = volumeControl.value;
+});

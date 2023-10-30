@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock-Paper-scissor</title>
     <link rel="stylesheet" type="text/css" href="./css/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <section>
@@ -25,71 +29,86 @@
         </div>
 
         <h2 id="text">Rock-Paper-Scissor</h2>
-        <button onclick="scrollToSection('down')" id="start">Start the game</button>
+        <button onclick="scrollToSection('down')" id="start">
+          Start the game
+        </button>
       </div>
     </section>
 
-    <div class="parallax">
-      <div class="parallax-layer" id="background">
-        <div id="game" id="down"></div>
-        <img src="./images/background.svg" alt="Background" />
-      </div>
-      <div class="parallax-layer" id="foreground">
-        <div class="game-container">
-         
-          <div class="gameInfo">
-            <p class="textInfo">First to 5 points wins the game</p>
-            <p class="roundCounter"></p>
-            <p class="gameStatus"></p>
-          </div>
-          <div class="animation">
-            <div class="player-side">
-              <h3>Player</h3>
-              <img class="choosing" src="./images/kakashi.gif" alt="" />
-              <img id="player-rock" src="./images/kakashi-rock.gif" alt="" />
-              <img id="player-paper" src="./images/kakashi-paper.gif" alt="" />
-              <img
-                id="player-scissors"
-                src="./images/kakashi-scissor.gif"
-                alt=""
-              />
-              <div class="score">
-                <p class="score-player">Score :</p>
-              </div>
-            </div>
-
-            <div class="cpu-side">
-              <h3>Computer</h3>
-              <img class="choosing" src="./images/kakashi.gif" alt="" />
-              <img id="cpu-rock" src="./images/kakashi-rock.gif" alt="" />
-              <img id="cpu-paper" src="./images/kakashi-paper.gif" alt="" />
-              <img
-                id="cpu-scissors"
-                src="./images/kakashi-scissor.gif"
-                alt=""
-              />
-              <div class="score">
-                <p class="score-cpu">Score :</p>
-              </div>
-            </div>
-          </div>
-          <div class="player-selection">
-            <button id="rock-btn">
-              <img src="./images/rock_removebg.png" alt="" />
-            </button>
-            <button id="paper-btn">
-              <img src="./images/paper_removebg.png" alt="" />
-            </button>
-            <button id="scissors-btn">
-              <img src="./images/scissors_removebg.png" alt="" />
-            </button>
-          </div>
-          <div class="continue_game">
-            <button class="continue">Continue</button>
-          </div>
-
-          
+    <div class="mediacontrol game" id="down">
+      <audio
+        id="myAudio"
+        src="./audio/Naruto Soundtrack - The Raising Fighting Spirit.mp3"
+        loop
+      ></audio>
+      <button id="playPauseButton">
+        <div class="playIcon">
+          <i class="bx bx-play-circle bx-md" id="playIcon"></i>
         </div>
+        <div class="pauseIcon">
+          <i class="bx bx-pause-circle bx-md" id="playIcon"></i>
+        </div>
+      </button>
+      <button id="muteUnmuteButton">
+        <div class="muteIcon">
+          <i class="bx bx-volume-mute bx-md" style="background-color: none"></i>
+        </div>
+        <div class="unmuteIcon">
+          <i class="bx bx-volume-full bx-md"></i>
+        </div>
+      </button>
+      <input
+        type="range"
+        id="volumeControl"
+        min="0"
+        max="1"
+        step="0.1"
+        value="1"
+        class="volumeControl"
+      />
+    </div>
+    <div class="game-container" >
+      <div class="gameInfo">
+        <p class="textInfo">First to 5 points wins the game</p>
+        <p class="roundCounter"></p>
+        <p class="gameStatus "></p>
+      </div>
+      <div class="animation">
+        <div class="player-side">
+          <h3>Player</h3>
+          <img class="choosing" src="./images/kakashi.gif" alt="" />
+          <img id="player-rock" src="./images/kakashi-rock.gif" alt="" />
+          <img id="player-paper" src="./images/kakashi-paper.gif" alt="" />
+          <img id="player-scissors" src="./images/kakashi-scissor.gif" alt="" />
+          <div class="score">
+            <p class="score-player">Score :</p>
+          </div>
+        </div>
+
+        <div class="cpu-side">
+          <h3>Computer</h3>
+          <img class="choosing" src="./images/kakashi.gif" alt="" />
+          <img id="cpu-rock" src="./images/kakashi-rock.gif" alt="" />
+          <img id="cpu-paper" src="./images/kakashi-paper.gif" alt="" />
+          <img id="cpu-scissors" src="./images/kakashi-scissor.gif" alt="" />
+          <div class="score">
+            <p class="score-cpu">Score :</p>
+          </div>
+        </div>
+      </div>
+      <div class="player-selection">
+        <button id="rock-btn">
+          <img src="./images/rock_removebg.png" alt="" />
+        </button>
+        <button id="paper-btn">
+          <img src="./images/paper_removebg.png" alt="" />
+        </button>
+        <button id="scissors-btn">
+          <img src="./images/scissors_removebg.png" alt="" />
+        </button>
+      </div>
+      <div class="continue_game">
+        <button class="continue">Continue</button>
       </div>
     </div>
 

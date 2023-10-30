@@ -36,21 +36,7 @@ startButton.addEventListener("click", function () {
 });
 
 
-const parallaxContainer = document.querySelector(".parallax");
-const backgroundLayer = document.getElementById("background");
-const foregroundLayer = document.getElementById("foreground");
 
-parallaxContainer.addEventListener("mousemove", function (e) {
-    const mouseX = e.clientX;
-    const mouseY = e.clientY;
-
-    // Adjust the transform property based on mouse position
-    const xParallax = (mouseX - parallaxContainer.clientWidth / 2) / 20;
-    const yParallax = (mouseY - parallaxContainer.clientHeight / 2) / 20;
-
-    backgroundLayer.style.transform = `translateX(${xParallax}px) translateY(${yParallax}px) scale(2)`;
-    ///foregroundLayer.style.transform = `translateX(${-xParallax}px) translateY(${-yParallax}px)`;
-});
 
 function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
