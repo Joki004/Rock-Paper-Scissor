@@ -171,7 +171,7 @@ function waitForButtonClick(playerScore, computerScore) {
       document.querySelector(".continue").textContent = "Play Again";
       document.querySelector(".continue").style.backgroundColor = "red";
     } else {
-      document.querySelector(".continue").textContent = "Click to Continue";
+      document.querySelector(".continue").textContent = "Click here to Continue";
     }
 
     continue_game.addEventListener("click", function () {

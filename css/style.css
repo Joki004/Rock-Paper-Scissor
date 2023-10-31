@@ -8,7 +8,6 @@ body {
   min-height: 1500px;
   height: 100%;
   overflow-x: hidden;
- 
 }
 section {
   position: relative;
@@ -80,7 +79,7 @@ section img {
   color: #e09f20;
   font-size: 6em;
   z-index: 1;
-  text-align: center; /* Center the text */
+  text-align: center;
 }
 
 #road {
@@ -98,46 +97,6 @@ section img {
   background-color: #8a7456;
 }
 
-.parallax {
-  perspective: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
-  height: auto;
-  margin: 0;
-}
-
-.parallax-layer {
-  position: absolute;
-  top: 350px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-
-}
-
-
-.parallax-layer img {
-  width: 100%;
-  height: 30em;
-  object-fit:cover;
-
-}
-#background {
-  /*transform: translateZ(-2px) scale(1.2);*/
-  transform: translateX(0) translateY(0) scale(1.2);
-  transition: transform 0.1s ease; /* Add transition for smooth movement */
-}
-
-#foreground {
-  transform: translateZ(0);
-}
 .game-container {
   display: flex;
   flex-direction: column;
@@ -156,6 +115,7 @@ section img {
   gap: 15px;
   width: 80%;
   padding: 5px;
+  cursor: pointer;
 }
 
 .player-selection button {
@@ -164,6 +124,7 @@ section img {
   border-radius: 8px;
   background-color: #ffedcb;
   object-fit: fill;
+  cursor: pointer;
 }
 .player-selection button img {
   width: 10em;
@@ -344,7 +305,8 @@ section img {
   font-style: italic;
 }
 
-#playPauseButton, #muteUnmuteButton {
+#playPauseButton,
+#muteUnmuteButton {
   margin: 10px;
   margin-right: 10px;
 }
@@ -357,8 +319,7 @@ section img {
   justify-content: center;
   background: none;
   border: solid;
-  color:#0a2a43;
-
+  color: #0a2a43;
 }
 .pauseIcon {
   display: none;
@@ -368,8 +329,7 @@ section img {
   justify-content: center;
   background: none;
   border: solid;
-  color:#0a2a43;
-
+  color: #0a2a43;
 }
 
 .muteIcon {
@@ -380,8 +340,7 @@ section img {
   justify-content: center;
   background: none;
   border: solid;
-  color:#0a2a43;
-
+  color: #0a2a43;
 }
 .unmuteIcon {
   display: flex;
@@ -390,11 +349,10 @@ section img {
   align-items: center;
   justify-content: center;
   border: solid;
-  color:#0a2a43;
+  color: #0a2a43;
 }
 
-
-.mediacontrol{
+.mediacontrol {
   display: flex;
   flex-direction: row;
   width: 20rem;
@@ -406,12 +364,24 @@ section img {
   font-size: large;
   margin-left: 10px;
   padding: 2px;
-  color:#0a2a43:
-
+  color: #0a2a43;
 }
-
-
-
+.credit {
+  width: 100%;
+  display: flex;
+  margin-top: 30px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+}
+.gitLogo {
+  margin-left: 10px;
+  cursor: pointer;
+  color: white;
+}
 @media screen and (max-width: 1100px) {
   .player-selection {
     width: 90%;
@@ -430,5 +400,43 @@ section img {
   }
   .score {
     font-size: 100%;
+  }
+  #text {
+    font-size: 4em;
+  }
+}
+@media screen and (max-width: 800px) {
+  .continue_game {
+    width: 30%;
+  }
+  .continue {
+    color: white;
+    border: none;
+    font-size: 15px;
+  }
+  .cpu-side h3,
+  .player-side h3 {
+    font-size: 20px;
+    width: 100px;
+  }
+  .score {
+    font-size: 75%;
+  }
+  .textInfo {
+    font-size: 25px;
+  }
+  .player-selection {
+    width: 90%;
+  }
+
+  .player-selection button {
+    width: 25%;
+  }
+  .player-selection button img {
+    width: 7em;
+    height: 7em;
+  }
+  #text {
+    font-size: 3em;
   }
 }
